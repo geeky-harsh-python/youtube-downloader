@@ -1,20 +1,17 @@
-# Use official Python image
+# Use a lightweight official Python image
 FROM python:3.10-slim
 
-# Install ffmpeg and other necessary packages
-RUN apt-get update && apt-get install -y ffmpeg gcc && apt-get clean
-
-# Set working directory
+# Set working directory inside the container
 WORKDIR /app
 
-# Copy project files
-COPY . .
+# Copy all contents of yt_downloader folder into /app
+COPY yt_downloader/ /app
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose port
-EXPOSE 5000
+# Expose the port used by Flask
+EXPOSE 8000
 
-# Start the app with gunicorn
-CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:5000"]
+# Run the Flask app
+CMD ["python", "app.py"]
