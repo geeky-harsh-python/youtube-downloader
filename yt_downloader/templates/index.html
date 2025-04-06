@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Downloader</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Video Downloader</h1>
+        <form id="downloadForm">
+            <label for="url">YouTube URL:</label>
+            <input type="text" id="url" name="url" required>
+            
+            <label>Download Option:</label>
+            <select id="choice" name="choice">
+                <option value="1">Video + Audio (WEBM)</option>
+                <option value="2">Audio Only (MP3)</option>
+            </select>
+
+            <div id="resolutionDiv">
+                <label for="resolution">Resolution:</label>
+                <select id="resolution" name="resolution">
+                    <option value="360">360p</option>
+                    <option value="480">480p</option>
+                    <option value="720">720p</option>
+                    <option value="1080">1080p</option>
+                </select>
+            </div>
+
+            <button type="submit">Download</button>
+        </form>
+        <div id="status"></div>
+        <a id="downloadLink" style="display:none;" download>Download File</a>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
